@@ -10,43 +10,18 @@
  */
 class Solution {
 public:
- void Solve(ListNode* &head,ListNode* curr,ListNode* prev){
 
-       if(curr==NULL){
-            head=prev;
-           return ;
-       }
-        ListNode*forward=curr->next;
-         Solve(head,forward,curr);
-            curr->next=prev;
-        
-      
-   }
-    
-    ListNode* reverseList(ListNode* head) {
-        ListNode*prev=NULL;
-        ListNode*curr=head;
-     
-     
-       Solve(head,curr,prev);
-       return head;
-    }
     ListNode* reverseBetween(ListNode* head, int left, int right) {
         ListNode*lenfinder=head;
         int len=0;
-        if(head==NULL || head->next==NULL){
+        if(head==NULL || head->next==NULL|| left==right){
             return head;
         }
         while(lenfinder!=NULL){
            len++;
            lenfinder=lenfinder->next;
         }
-        if(left==1 && right==len){
-            return reverseList(head);
-        }
-        if(left==right){
-            return head;
-        }
+       
         ListNode*temp1=head;
         ListNode*temp2=head;
         ListNode*temp3=head;
