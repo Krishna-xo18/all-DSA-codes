@@ -30,14 +30,13 @@ public:
             return NULL;
         }
        
-        ListNode*temp=new ListNode();
-        temp->val=values[0];
-        temp->next=NULL;
+        ListNode*temp=new ListNode(values[0]);
+       
         ListNode*headofans=temp;
         for(int i=1;i<values.size();i++){
             ListNode*add=new ListNode(values[i]);
             temp->next=add;
-            temp=add;
+            temp=temp->next;
         }
         return headofans;
         
