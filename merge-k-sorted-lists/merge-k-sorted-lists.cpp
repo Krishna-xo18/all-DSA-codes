@@ -12,12 +12,6 @@ class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         vector<int>values;
-        if(lists.size()==0){
-            return NULL;
-        }
-        if(lists.size()==1){
-            return lists[0];
-        }
         for(int i=0;i<lists.size();i++){
              ListNode*temp=lists[i];
             while(temp!=NULL){
@@ -29,7 +23,6 @@ public:
         if(values.size()==0){
             return NULL;
         }
-       
         ListNode*temp=new ListNode(values[0]);
        
         ListNode*headofans=temp;
