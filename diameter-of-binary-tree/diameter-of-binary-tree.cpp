@@ -20,8 +20,8 @@ public:
       int rightheight=height(root->right);
       return 1+max(leftheight,rightheight);
   }
- 
-    void smalldiameter(TreeNode*node,int &diameter){
+    int diameter=0;
+    void smalldiameter(TreeNode*node){
        if(node==NULL){
            return;
        }
@@ -29,15 +29,14 @@ public:
         int y=height(node->right);
 
         diameter=max(diameter,x+y);
-        smalldiameter(node->left,diameter);
-        smalldiameter(node->right,diameter);
+        smalldiameter(node->left);
+        smalldiameter(node->right);
     }
     int diameterOfBinaryTree(TreeNode* root) {
-        int diameter=0;
         if(root==NULL){
             return 0;
         }
-        smalldiameter(root,diameter);
+        smalldiameter(root);
 
         return diameter;
     }
