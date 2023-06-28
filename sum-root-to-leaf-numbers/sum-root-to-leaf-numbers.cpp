@@ -11,35 +11,25 @@
  */
 class Solution {
 public:
-    vector<string>v;
-    void solve(TreeNode*node,string &s){
-        if(node==NULL){
-            return ;
-        }
-
-       if(node->left==NULL && node->right==NULL){
-           
-            s+=to_string(node->val);
-            v.push_back(s);
-            s.pop_back();
-          
+   int ans=0;
+    void solve(TreeNode*root,string &s){
+        if(root==NULL){
             return;
-       }
-       s+=to_string(node->val);
-       solve(node->left,s);
-       solve(node->right,s);
-       s.pop_back();
-    
-       return;
+        }
+        if(root->left==NULL && root->right==NULL){
+           s+=to_string(root->val);
+           ans+=stoi(s);
+           s.pop_back();
+           return;
+        }
+        s+=to_string(root->val);
+        solve(root->left,s);
+        solve(root->right,s);
+        s.pop_back();
     }
     int sumNumbers(TreeNode* root) {
         string s="";
         solve(root,s);
-       int sum=0;
-       for(int i=0;i<v.size();i++){
-           sum+=stoi(v[i]);
-       }
-      
-        return sum;
+        return ans;
     }
 };
