@@ -11,30 +11,26 @@
  */
 class Solution {
 public:
-   bool flag=false;
-   vector<int>lastinsert;
-    void solve(TreeNode*root,int sum,int targetSum){
+    bool solve(TreeNode*root,int sum,int targetSum){
       if(root==NULL){
-          return;
+          return false;
       }
       if(root->left==NULL && root->right==NULL){
           sum+=root->val;
           if(sum==targetSum){
-           flag=true;
+           return true;
           }
           sum=sum-root->val;
-          
-          return;
       }
       sum+=root->val;
-      lastinsert.push_back(root->val);
-      solve(root->left,sum,targetSum);
-      solve(root->right,sum,targetSum);
+      if(solve(root->left,sum,targetSum)  || solve(root->right,sum,targetSum)){
+          return true;
+      }
       sum=sum-root->val;
+      return false;
       
     }
     bool hasPathSum(TreeNode* root, int targetSum) {
-        solve(root,0,targetSum);
-        return flag;
+        return solve(root,0,targetSum);
     }
 };
