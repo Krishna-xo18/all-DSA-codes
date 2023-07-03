@@ -3,7 +3,7 @@ public:
     set<vector<int>>ans;
     void helper(vector<int>&nums,vector<int>&temp,int start){
         if(start==nums.size()){
-            sort(temp.begin(),temp.end());
+          //  sort(temp.begin(),temp.end());
             ans.insert(temp);
             return;
         }
