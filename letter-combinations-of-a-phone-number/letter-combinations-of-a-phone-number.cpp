@@ -2,9 +2,7 @@ class Solution {
 public:
      void helper(int len,vector<string>&ans,vector<string>&temp,int index,string s){
         if(index==len){
-            if(s.size()==len){
             ans.push_back(s);
-            }
             return ;
         }
         
