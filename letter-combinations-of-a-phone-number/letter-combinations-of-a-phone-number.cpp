@@ -11,7 +11,6 @@ public:
         for(int i=0;i<temp[index].size();i++){
             s.push_back(temp[index][i]);
             helper(len,ans,temp,index+1,s);
-            //backtrack
             s.pop_back();
         }
     }
@@ -21,7 +20,6 @@ public:
         if(len==0){
             return ans;
         }
-        //mapping each numbers to their letters
         vector<string>v={"0","1","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
         vector<string>temp;
         for(int i=0;i<len;i++){
