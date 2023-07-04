@@ -2,13 +2,16 @@ class Solution {
 public:
      void helper(int len,vector<string>&ans,vector<string>&temp,int index,string s){
         if(index==len){
+            if(s.size()==len){
             ans.push_back(s);
+            }
             return ;
         }
         
         for(int i=0;i<temp[index].size();i++){
             s.push_back(temp[index][i]);
             helper(len,ans,temp,index+1,s);
+            //backtrack
             s.pop_back();
         }
     }
@@ -18,6 +21,7 @@ public:
         if(len==0){
             return ans;
         }
+        //mapping each numbers to their letters
         vector<string>v={"0","1","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
         vector<string>temp;
         for(int i=0;i<len;i++){
