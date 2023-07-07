@@ -28,9 +28,11 @@ public:
         int n=nums.size();
         for(int i=0;i<n;i++){
             if(i!=0){
+                //to not include the first element
                 temp1.push_back(nums[i]);
             }
             if(i!=n-1){
+                //to not include the last element
                 temp2.push_back(nums[i]);
             }
         }
