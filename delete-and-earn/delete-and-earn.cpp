@@ -1,35 +1,23 @@
 class Solution {
 public:
-       int solve(int idx,vector<int>&nums,vector<int>&dp){
-	    if(idx==0){
-	        return nums[0];
-	    }
-	    if(idx<0){
-	        return 0;
-	    }
-	    if(dp[idx]!=-1){
-	        return dp[idx];
-	    }
-	    int pick=nums[idx]+solve(idx-2,nums,dp);
-	    int notpick=0+solve(idx-1,nums,dp);
-	   return  dp[idx]=max(pick,notpick);
-   }
-    int rob(vector<int>& nums) {
-        vector<int>dp(nums.size()+1,-1);
-        return solve(nums.size()-1,nums,dp);
-    }
+     int solve(int index,vector<int>&nums,unordered_map<int,int>&mp,vector<int>&dp){
+        if(index==nums.size()){
+            return 0;
+        }
+        if(dp[index]!=-1){
+            return dp[index];
+        }
+        int pick=nums[index]*mp[nums[index]]+solve(upper_bound(nums.begin(),nums.end(),nums[index]+1)-nums.begin(),nums,mp,dp);
+        int notpick=0+solve(index+1,nums,mp,dp);
+        return dp[index]=max(pick,notpick);
+     }
     int deleteAndEarn(vector<int>& nums) {
-        map<int,int>mp;
-        int mini=INT_MAX;
+        sort(nums.begin(),nums.end());
+        unordered_map<int,int>mp;
         for(int i=0;i<nums.size();i++){
             mp[nums[i]]++;
         }
-        int n=10001;
-        vector<int>sum(n,0);
-        for(auto element:mp){
-            sum[element.first]=element.second*element.first;
-        }
-        return rob(sum);
-
+        vector<int>dp(nums.size(),-1);
+        return solve(0,nums,mp,dp);
     }
 };
