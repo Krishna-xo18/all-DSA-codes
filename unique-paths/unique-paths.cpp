@@ -11,7 +11,7 @@ public:
     }
     int uniquePaths(int m, int n) {
         //move down or right so if we go from bottom it will be up or left
-        vector<vector<int>>dp(m+10,vector<int>(n+10,1));
+        vector<vector<int>>dp(m,vector<int>(n,1));
         return solve(m,n,dp);
     }
 };
