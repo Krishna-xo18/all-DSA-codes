@@ -18,9 +18,21 @@ public:
         return dp[idx1][idx2]=count;
     }
     int findLength(vector<int>& nums1, vector<int>& nums2) {
-        memset(dp,-1,sizeof(dp));
+        vector<vector<int>>dp(nums1.size()+1,vector<int>(nums2.size()+1,0));
         int maxlen=0;
-         solve(nums1.size(),nums2.size(),maxlen,nums1,nums2);
+    
+         
+         for(int idx1=1;idx1<=nums1.size();idx1++){
+             for(int idx2=1;idx2<=nums2.size();idx2++){
+                if(nums1[idx1-1]==nums2[idx2-1]){
+                    dp[idx1][idx2]=1+dp[idx1-1][idx2-1];
+                    maxlen=max(maxlen,dp[idx1][idx2]);
+                }
+                else{
+                    dp[idx1][idx2]=0;
+                }
+             }
+         }
          return maxlen;
     }
 };
