@@ -3,23 +3,24 @@ class Solution
     public:
         int atMostSum(vector<int> &arr, int k)
         {
-            int sum = 0;
-            int cnt = 0, maxcnt = 0;
-            int n = arr.size();
-            for (int i = 0; i < n; i++)
-            {
-                if ((sum + arr[i]) <= k)
-                {
-                    sum += arr[i];
-                    cnt++;
-                }
-                else
-                {
-                    sum = sum - arr[i - cnt] + arr[i];
-                }
-                maxcnt = max(cnt, maxcnt);
+            int i=0;
+            int j=0;
+            int sum=0;
+            int ans=0;
+            while(j<arr.size()){
+              sum+=arr[j];
+              if(sum<=k){
+                 ans=max(ans,j-i+1);
+              }
+              if(sum>k){
+                 while(sum>k){
+                     sum-=arr[i];
+                     i++;
+                 }
+              }
+              j++;
             }
-            return maxcnt;
+            return ans;
         }
     int longestEqualSubarray(vector<int> &nums, int k)
     {
