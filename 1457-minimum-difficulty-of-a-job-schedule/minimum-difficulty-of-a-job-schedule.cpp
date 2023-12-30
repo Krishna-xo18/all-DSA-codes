@@ -2,7 +2,7 @@ class Solution {
 public:
     int dp[301][11];
     int solve(int idx,int d,vector<int>&jobDifficulty){
-       if(d <= 0 && idx >= jobDifficulty.size()) return 0;
+       if(d == 0 && idx >= jobDifficulty.size()) return 0;
         if(d <= 0 || idx >= jobDifficulty.size()) return 1e9;
 
       if(dp[idx][d]!=-1){
