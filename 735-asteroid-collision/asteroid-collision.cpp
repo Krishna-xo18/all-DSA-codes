@@ -19,7 +19,7 @@ public:
                }
                
            }
-           else if(asteroids[i]>0){
+           else {
                stk.push(asteroids[i]);
            }
         }
