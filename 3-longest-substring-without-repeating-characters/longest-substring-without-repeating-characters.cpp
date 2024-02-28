@@ -19,8 +19,7 @@ class Solution
                     count++;
                 }
                 mp[s[j]]++;
-                if (j - i + 1 > count)
-                {
+                
                     while ((j - i + 1) > count)
                     {
                         mp[s[i]]--;
@@ -31,7 +30,7 @@ class Solution
                         }
                         i++;
                     }
-                }
+                
                 if (j - i + 1 == count)
                 {
                     ans = max(ans, count);
