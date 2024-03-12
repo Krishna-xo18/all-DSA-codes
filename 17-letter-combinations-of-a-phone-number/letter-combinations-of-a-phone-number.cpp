@@ -1,34 +1,36 @@
 class Solution {
 public:
-     void helper(int len,vector<string>&ans,vector<string>&temp,int index,string s){
-        if(index==len){
-            if(s.size()==len){
-            ans.push_back(s);
+    void generateCombinations(int len, vector<string>& result, vector<string>& mappings, int index, string current) {
+        if (index == len) {
+            if (current.size() == len) {
+                result.push_back(current);
             }
-            return ;
+            return;
         }
         
-        for(int i=0;i<temp[index].size();i++){
-            s.push_back(temp[index][i]);
-            helper(len,ans,temp,index+1,s);
-            s.pop_back();
+        for (int i = 0; i < mappings[index].size(); i++) {
+            current.push_back(mappings[index][i]);
+            generateCombinations(len, result, mappings, index + 1, current);
+            current.pop_back();
         }
     }
+    
     vector<string> letterCombinations(string digits) {
-        int len=digits.size();
-        vector<string>ans;
-        if(len==0){
-            return ans;
-        }
-        vector<string>v={"0","1","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
-        vector<string>temp;
-        for(int i=0;i<len;i++){
-            int alpha=digits[i]-'0';
-            temp.push_back(v[alpha]);
+        int len = digits.size();
+        vector<string> result;
+        if (len == 0) {
+            return result;
         }
         
-        string s;
-        helper(len,ans,temp,0,s);
-        return ans;
+        vector<string> mappings = {"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        vector<string> temp;
+        for (int i = 0; i < len; i++) {
+            int digit = digits[i] - '0';
+            temp.push_back(mappings[digit]);
+        }
+        
+        string current;
+        generateCombinations(len, result, temp, 0, current);
+        return result;
     }
-};
+    };
