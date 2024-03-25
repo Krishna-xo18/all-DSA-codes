@@ -1,4 +1,5 @@
-struct TrieNode{
+class TrieNode{
+    public:
     TrieNode* links[26];
     bool flag=false;
     TrieNode(){
