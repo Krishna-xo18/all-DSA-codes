@@ -3,9 +3,7 @@ class TrieNode{
     TrieNode* links[26];
     bool flag=false;
     TrieNode(){
-        for(int i=0;i<26;i++){
-            links[i]=NULL;
-        }
+       memset(links,NULL,sizeof(links));
     }
     bool containskey(char ch){
         return (links[ch-'a']!=NULL);
