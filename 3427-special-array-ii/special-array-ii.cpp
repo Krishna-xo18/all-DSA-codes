@@ -14,12 +14,14 @@ public:
             int x=queries[i][0];
             int y=queries[i][1];
             int idx1=lower_bound(flags.begin(),flags.end(),x+1)-flags.begin();
-            if(x==y || idx1>=flags.size())ans.push_back(true);
-           else if(flags[idx1]>=x && flags[idx1]<=y){
-               ans.push_back(false);
+            int idx2=lower_bound(flags.begin(),flags.end(),y)-flags.begin();
+            if(x==y )ans.push_back(true);
+           else if(idx1==idx2 ){
+               if(idx1<flags.size() && idx2<flags.size() && flags[idx1]>=x+1 && flags[idx1]<=y)ans.push_back(false);
+               else ans.push_back(true);
             }
             else{
-                ans.push_back(true);
+                ans.push_back(false);
             }
         }
         return ans;
